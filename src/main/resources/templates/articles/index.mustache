@@ -1,0 +1,23 @@
+{{>layouts/header}}
+
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--  반복  -->
+    {{#articleList}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+    {{/articleList}}
+    </tbody>
+</table>
+
+{{>layouts/footer}}
