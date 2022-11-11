@@ -25,6 +25,7 @@ public class ArticleController {
         return "articles/new";
     }
 
+
     @PostMapping("articles/create")
     public String createArticle(ArticleForm form){
 //      System.out.println(form.toString());
@@ -39,9 +40,10 @@ public class ArticleController {
 //        System.out.println(saved.toString());
         log.info(saved.toString());
 
-        return "";
+        return "redirect:/articles/" + saved.getId();
     }
 
+    //해당 id번호 상세페이지 조회
     @GetMapping("/articles/{id}")
 //    @PathVariable URL경로에 변수를 넣어주는 어노테이션
     public String show(@PathVariable Long id, Model model){
@@ -55,9 +57,12 @@ public class ArticleController {
         model.addAttribute("article", articleEntity);
 
         // 3 : 보여줄 페이지 설정!
-        return "articles /show";
+        return "articles/show";
 
     }
+
+
+    //게시물 전체 조회
     @GetMapping("/articles")
     public String index(Model model){
 
@@ -69,6 +74,19 @@ public class ArticleController {
 
 
         return "articles/index";
+    }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable Long id, Model model){
+
+        //수정할 데이터 가져오기
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+
+        // 모델에 데이터 등록!
+        model.addAttribute("article", articleEntity);
+
+        //뷰 페이지 설정
+        return "articles/edit";
     }
 
 }
