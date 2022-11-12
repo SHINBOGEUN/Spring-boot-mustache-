@@ -7,6 +7,12 @@ youtube : 홍팍 [스프링부트 입문 강의](https://youtu.be/2IuZs5I5KJg)
 <br>
 - RestAPI : 웹 서버의 자원을 클라이언트에 구애받지 않고 사용할 수 있게 하는 설계 방식으로써 HTTP를 통해 서버의 자원을 다루게 하는 기술
 - JSON : JS를 차용한 객체 표현식
+  {
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+  }
 - Talend API Tester Free Edition을 이용하여 TEST
 <br>
 
