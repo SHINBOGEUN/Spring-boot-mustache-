@@ -114,6 +114,7 @@ public class ArticleController {
     }
     
     //게시물 삭제
+    //RedirectAttributes : return 페이지로 돌아가는데 이때 내가 검색했던 내용이나 그 페이지 그대로 유지하고 싶을때
     @GetMapping("/articles/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes rttr){
         log.info("삭제 요청이 들어옴");
