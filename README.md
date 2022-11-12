@@ -6,13 +6,12 @@
 # 🎈 설계 및 구현
 ## 1) 개발환경
 <br>
-
-* [x] JAVA 11
-* [x] Spring Framework 5.2.8
-* [x] HikariCP 커넥션 풀, Lombok 1.18.24, MyBatis 3.5.3
-* [x] MySQL 8.0.30
+* [x] JAVA 8
+* [x] Gradle 
+* [x] mustahce 2.6.13, Lombok 1.18.24, JPA 2.6.13
+* [x] H2 DB
 * [x] Apache Tomcat 9.0
 * [x] HTML, CSS, JavaScript, Jquery, BootStrap
-* [x] IDE : Eclipse 
+* [x] IDE : IntelliJ 
 <br>
 
