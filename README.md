@@ -1,4 +1,4 @@
-# Spring 
+# Spring (RestAPI)
 
 ## 소개🎖️ 
 youtube : 홍팍 [스프링부트 입문 강의](https://youtu.be/2IuZs5I5KJg)
