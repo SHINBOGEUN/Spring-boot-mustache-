@@ -23,4 +23,13 @@ public class Article {
     private String content;
 
 
+    //제목과 내용이 null
+    public void patch(Article article) {
+        if(article.title != null){
+            this.title = article.title;
+        }
+        if (article.content != null) {
+            this.content = article.content;
+        }
+    }
 }
