@@ -6,8 +6,11 @@ import com.example.firstproject.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service // 서비스 선언 (서비스 객체를 스프링부트에 생성)
 public class ArticleService {
@@ -63,5 +66,27 @@ public class ArticleService {
         //3 : 대상 삭제 후 응답 반환
         articleRepository.delete(target);
         return target;
+    }
+
+    @Transactional  // 해당 메소드를 트랜잭셔느로 묶는다! 실패를 하면 이전 상태로 롤백을 한다.
+    public List<Article> createArticles(List<ArticleForm> dtos) {
+        //1 : dto 묶음을 entity 묶음으로 변환
+        List<Article> articleList =
+                dtos.stream().map(dto -> dto.toEntity()).collect(Collectors.toList());
+        /*for문으로 작성시
+        List<Article> articleList = new ArrayList<>();
+        for (int i = 0; i < dtos.size(); i++) {
+            ArticleForm dto = dtos.get(i);
+            Article entity = dto.toEntity();
+            aritlceList.add(entity);
+        }*/
+        //2 : entity묶음을 DB로 저장
+        articleList.stream().forEach(article -> articleRepository.save(article));
+        //3 :강제 예외 발생
+        articleRepository.findById(-1L).orElseThrow(
+                ()-> new IllegalArgumentException("결제 실패")
+        );
+        //4 : 결과값 반환
+        return articleList;
     }
 }
