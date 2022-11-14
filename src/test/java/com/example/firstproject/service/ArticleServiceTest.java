@@ -5,12 +5,14 @@ import com.example.firstproject.entity.Article;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest //해당 클래스는 스프링부트와 연동되어 테스팅 된다.
 class ArticleServiceTest {
@@ -49,6 +51,7 @@ class ArticleServiceTest {
     }
 
     @Test
+    @Transactional
     void create(){
         String title = "라라라라";
         String content = "4444";
@@ -60,4 +63,60 @@ class ArticleServiceTest {
 
         assertEquals(expected.toString(), article.toString());
     }
+
+
+    @Test
+    @Transactional
+    void create___실패(){
+        String title = "라라라라";
+        String content = "4444";
+
+        ArticleForm dto = new ArticleForm(4L,title,content);
+        Article expected = null;
+
+        Article article = articleService.create(dto);
+
+        assertEquals(expected.toString(), article.toString());
+    }
+
+    @Test
+    @Transactional
+    void update_성공_____존재하는_id와_title_content가있는(){
+        //예상
+        Long id = 2L;
+        String title = "라라라라";
+        String content = "4444";
+
+        ArticleForm dto = new ArticleForm(id, title, content);
+        Article expected =new Article(id, title, content);
+
+        //실제
+        Article article = articleService.update(id, dto);
+
+        //비교
+        assertEquals(expected.toString(), article.toString());
+    }
+
+    @Test
+    @Transactional
+    void update_성공___존재하는_id와_title만_있는_dto_입력(){
+        //예상
+        Long id = 1L;
+        String title = "라라라라";
+        String content = null;
+        Article expected = null;
+        Article con = articleService.show(id);
+        if(content == null){
+            expected = new Article(id, title, con.getContent());
+        }
+
+        ArticleForm dto = new ArticleForm(id, title, con.getContent());
+        //실제
+        Article article = articleService.update(id, dto);
+
+        //비교
+        assertEquals(expected.toString(), article.toString());
+    }
+
+
 }
