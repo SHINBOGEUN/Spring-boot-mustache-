@@ -20,7 +20,7 @@ public class Comment {
     private Long id;
 
     @ManyToOne //해당 댓글 엔티티 여러개가, 하나의 Article에 연관된다.
-    @JoinColumn(name = "article_id")
+    @JoinColumn(name = "article_id") // article_id 컬럼에 Article의 대표값을 저장!
     private Article article;
 
     @Column
