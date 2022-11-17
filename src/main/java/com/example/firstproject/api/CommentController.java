@@ -40,9 +40,27 @@ public class CommentController {
     
     
     //댓글 수정
+
+    @PatchMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> update(@PathVariable Long id,
+                                             @RequestBody CommentDto dto){
+
+        //서비스에게 위임
+        CommentDto updateDto = commentService.update(id, dto);
+
+        return ResponseEntity.status(HttpStatus.OK).body(updateDto);
+    }
     
     
     //댓글 삭제
+    @DeleteMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> delete(@PathVariable Long id){
+
+        //서비스에게 위임
+        CommentDto deleteDto = commentService.delete(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(deleteDto);
+    }
     
     
     
