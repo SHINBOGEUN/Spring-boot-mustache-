@@ -1,0 +1,13 @@
+<div id="comments-list">
+    <!--컨트롤러로 부터 받은 값을 반복해서 뷰에 나타내기-->
+    {{#commentDtos}}
+        <div class="card m-2" id="comments-{{id}}">
+            <div class="card-header">
+                {{nickname}}
+            </div>
+            <div class="card-body">
+                {{body}}
+            </div>
+        </div>
+    {{/commentDtos}}
+</div>

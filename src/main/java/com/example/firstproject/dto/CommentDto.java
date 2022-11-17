@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString
-public class CommentDto {
+public class CommentDto {  //Json 값을 받기 위해서 생성
 
     private Long id;
 
